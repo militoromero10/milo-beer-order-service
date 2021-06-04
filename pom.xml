@@ -2,35 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!--    usamos este bom para seguir el curso-->
     <parent>
-        <groupId>com.milo</groupId>
-        <artifactId>milo-ms-bom</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.github.sfg-beer-works</groupId>
+        <artifactId>sfg-brewery-bom</artifactId>
+        <version>1.0.3</version>
     </parent>
+    <!-- no podemos usar este pom, porque tocaria publicarla en la centra del maven o repo
+        <parent>
+            <groupId>com.milo</groupId>
+            <artifactId>milo-ms-bom</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </parent>
+    -->
+
     <groupId>com.milo</groupId>
     <artifactId>milo-beer-order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>milo-beer-order-service</name>
     <description>microservice for beer order</description>
-
-    <dependencies>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-    </dependencies>
-
 
 </project>

@@ -1,6 +1,6 @@
 package com.milo.ms.services.beer;
 
-import com.milo.ms.web.model.BeerDto;
+import com.milo.brewery.model.BeerDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;

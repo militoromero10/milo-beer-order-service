@@ -1,6 +1,6 @@
 package com.milo.ms.services.beer;
 
-import com.milo.ms.web.model.BeerDto;
+import com.milo.brewery.model.BeerDto;
 
 import java.util.Optional;
 import java.util.UUID;

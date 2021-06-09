@@ -1,7 +1,7 @@
 package com.milo.ms.services;
 
-import com.milo.ms.web.model.BeerOrderDto;
-import com.milo.ms.web.model.BeerOrderPagedList;
+import com.milo.brewery.model.BeerOrderDto;
+import com.milo.brewery.model.BeerOrderPagedList;
 import org.springframework.data.domain.Pageable;
 
 import java.util.UUID;

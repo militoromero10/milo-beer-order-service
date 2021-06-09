@@ -1,4 +1,4 @@
-package com.milo.ms.web.model;
+package com.milo.brewery.model;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.milo.ms.web.model;
+package com.milo.brewery.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

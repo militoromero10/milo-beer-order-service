@@ -1,7 +1,7 @@
 package com.milo.ms.web.mappers;
 
 import com.milo.ms.domain.BeerOrderLine;
-import com.milo.ms.web.model.BeerOrderLineDto;
+import com.milo.brewery.model.BeerOrderLineDto;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 

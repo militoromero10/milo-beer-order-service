@@ -4,6 +4,7 @@ import com.milo.ms.domain.BeerOrder;
 import com.milo.ms.domain.BeerOrderEventEnum;
 import com.milo.ms.domain.BeerOrderStatusEnum;
 import com.milo.ms.repositories.BeerOrderRepository;
+import com.milo.ms.sm.BeerOrderStateChangeInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -18,6 +19,9 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
 
     private final StateMachineFactory<BeerOrderStatusEnum, BeerOrderEventEnum> smf;
     private final BeerOrderRepository beerOrderRepository;
+    private final BeerOrderStateChangeInterceptor beerOrderStateChangeInterceptor;
+
+    public static final String ORDER_ID_HEADER = "ORDER_ID_HEADER";
 
     @Override
     public BeerOrder newBeerOrder(BeerOrder beerOrder) {
@@ -33,7 +37,10 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
     private void sendBeerOrderEvent(BeerOrder beerOrder, BeerOrderEventEnum eventEnum){
         StateMachine<BeerOrderStatusEnum, BeerOrderEventEnum> sm = build(beerOrder);
 
-        Message msg = MessageBuilder.withPayload(eventEnum).build();
+        Message msg = MessageBuilder
+                .withPayload(eventEnum)
+                .setHeader(ORDER_ID_HEADER, beerOrder.getId().toString())
+                .build();
 
         sm.sendEvent(msg);
 
@@ -46,6 +53,7 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
 
         sm.getStateMachineAccessor()
                 .doWithAllRegions(sma ->{
+                    sma.addStateMachineInterceptor(beerOrderStateChangeInterceptor);
                     sma.resetStateMachine( new DefaultStateMachineContext<>(beerOrder.getOrderStatus(), null, null, null));
                 });
         sm.start();

@@ -1,8 +1,8 @@
 package com.milo.ms.services;
 
 import com.milo.ms.domain.BeerOrder;
+import com.milo.ms.domain.BeerOrderStatusEnum;
 import com.milo.ms.domain.Customer;
-import com.milo.ms.domain.OrderStatusEnum;
 import com.milo.ms.repositories.BeerOrderRepository;
 import com.milo.ms.repositories.CustomerRepository;
 import com.milo.ms.web.mappers.BeerOrderMapper;
@@ -67,7 +67,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
             BeerOrder beerOrder = beerOrderMapper.dtoToBeerOrder(beerOrderDto);
             beerOrder.setId(null); //should not be set by outside client
             beerOrder.setCustomer(customerOptional.get());
-            beerOrder.setOrderStatus(OrderStatusEnum.NEW);
+            beerOrder.setOrderStatus(BeerOrderStatusEnum.NEW);
 
             beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder));
 
@@ -92,7 +92,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
         BeerOrder beerOrder = getOrder(customerId, orderId);
-        beerOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
+        beerOrder.setOrderStatus(BeerOrderStatusEnum.PICKED_UP);
 
         beerOrderRepository.save(beerOrder);
     }
